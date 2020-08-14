@@ -30,12 +30,12 @@ To run on iOS - react-native run-ios
 
 ## Screens
 
-![Splash](Splash.png)
+![Splash](ScreenShots/Splash.png)
 
-![Loading](Loading.png)
+![Loading](ScreenShots/Loading.png)
 
-![Home](Home.png)
+![Home](ScreenShots/Home.png)
 
-![Details](Details.png)
+![Details](ScreenShots/Details.png)
 
 
