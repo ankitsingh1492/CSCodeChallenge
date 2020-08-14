@@ -1,3 +1,5 @@
+import { FETCH_SONGS } from '../actions/ActionTypes';
+
 const initialState = {
     songsList : [],
     loading : true
@@ -5,17 +7,17 @@ const initialState = {
 
 const RootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case  'GET_SONGS_LIST':
+        case  FETCH_SONGS.REQUEST:
             return { 
                 ...state
             }
-        case  'GET_SONGS_LIST_SUCCESS':
+        case  FETCH_SONGS.SUCCESS:
         return { 
             ...state,
             songsList: [...action.data],
             loading: false
         }
-        case  'getSongsListError':
+        case FETCH_SONGS.FAILURE:
         return { 
             ...state,
             loading: false,

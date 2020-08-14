@@ -28,9 +28,7 @@ AlbumDescription = () => (
       ]}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
       pulvinar lorem eu ligula gravida tincidunt. Donec a nisi eros. Nunc
-      venenatis mauris sed risus euismod iaculis. Donec sapien nibh, rutrum non
-      imperdiet hendrerit, congue vel risus. Phasellus enim turpis, venenatis
-      sit amet faucibus sed, malesuada eu justo. Ut id ultricies mauris.
+      venenatis mauris sed risus euismod iaculis.
     </Text>
   </View>
 );

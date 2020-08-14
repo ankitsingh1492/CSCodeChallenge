@@ -1,4 +1,6 @@
 import { SongData } from "../model/Songs";
+import { FETCH_SONGS } from './ActionTypes';
+
 
 export const getMoviesFromApiAsync = () => {
   return async (dispatch) => {
@@ -21,15 +23,15 @@ export const getMoviesFromApiAsync = () => {
   };
 
 export const getSongsList = () => ({
-    type: 'GET_SONGS_LIST',
+    type: FETCH_SONGS.REQUEST,
 });
 
 export const getSongsListError = (error) => ({
-    type: 'GET_SONGS_LIST_ERROR',
+    type: FETCH_SONGS.FAILURE,
     error: error,
 });
 
 export const getSongsListSuccess = (data) => ({
-    type: 'GET_SONGS_LIST_SUCCESS',
+    type: FETCH_SONGS.SUCCESS,
     data: data,
 });
