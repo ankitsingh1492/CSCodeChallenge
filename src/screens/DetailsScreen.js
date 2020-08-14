@@ -35,22 +35,20 @@ AlbumDescription = () => (
   </View>
 );
 
-function DetailsScreen({route, navigation}) {
+function DetailsScreen({route}) {
   const {item} = route.params;
   const {
     artistName,
-    imageLowRes,
     trackName,
     collectionName,
     imageHighRes,
     trackViewUrl,
   } = item;
-  const {otherParam} = route.params;
   return (
     <View style={styles.container}>
       <BackGroundImage imgUri={imageHighRes} />
       <View style={{alignItems: 'center'}}>
-        <AlbumImage imgUri={imageLowRes} />
+        <AlbumImage imgUri={imageHighRes} />
         <Text style={styles.title}>{artistName}</Text>
         <Text style={styles.title}>{trackName}</Text>
         <Text style={[styles.title, {fontSize: 20}]}>{collectionName}</Text>
