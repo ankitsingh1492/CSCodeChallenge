@@ -22,7 +22,8 @@ Tested on iPhone 11 , iPhone SE , iOS 13.5
 ```
 Step 1.) git clone https://github.com/ankitsingh1492/CSCodeChallenge.git
 Step 2.) cd CSCodeChallenge
-Step3.) npm install 
+Step 3.) npm install 
+Step 4.) cd ios && pod install
 
 To run on iOS - react-native run-ios
 ```
