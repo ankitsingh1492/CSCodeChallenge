@@ -49,9 +49,9 @@ static void InitializeFlipper(UIApplication *application) {
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
-  return [NSURL URLWithString:@"http://localhost:8085/index.bundle?platform=ios&dev=true"];
+//  return [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios&dev=true"];
 
-//  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
