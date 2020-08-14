@@ -1,20 +1,42 @@
 import React from 'react';
-import {Button, View, Text} from 'react-native';
+import { View } from 'react-native';
+import SongsList from '../components/SongsList'
+import WithLoading from '../components/WithLoading'
+import { connect } from 'react-redux';
+import {getMoviesFromApiAsync} from '../actions/SongAction'
 
-const HomeScreen = ({navigation}) => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => {
-            navigation.navigate('Details', {
-              itemId: 86,
-              otherParam: 'anything you want here',
-            });
-          }}
-      />
-    </View>
-  );
+const SongsListWithLoading = WithLoading(SongsList)
+
+class HomeScreen extends React.Component {
+    componentDidMount() {
+        this.props.getSongs()
+    }
+    render() {
+    return (
+        <View style={{ flex: 1}}>
+            <SongsListWithLoading isLoading={this.props.loading}
+                songs={this.props.songsList}
+                navigation={this.props.navigation}
+            />
+        </View>
+    );
 };
-export default HomeScreen;
+}
+
+const mapStateToProps = state => {
+    return {
+        songsList: state.songsList,
+        loading: state.loading,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getSongs: () => { dispatch(getMoviesFromApiAsync()) }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HomeScreen);

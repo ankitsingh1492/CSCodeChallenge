@@ -1,27 +1,109 @@
 import * as React from 'react';
-import {Button, View, Text } from 'react-native';
+import {Button, View, Text, Image, StyleSheet, Linking} from 'react-native';
 
-  
-function DetailsScreen({ route, navigation }) {
-  const { itemId } = route.params;
-    const { otherParam } = route.params;
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <Text>itemId: {JSON.stringify(itemId)}</Text>
-        <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+BackGroundImage = ({imgUri}) => (
+  <Image
+    style={styles.backGroundLogo}
+    source={{
+      uri: imgUri,
+    }}
+  />
+);
+
+AlbumImage = ({imgUri}) => (
+  <Image
+    style={styles.tinyLogo}
+    source={{
+      uri: imgUri,
+    }}
+  />
+);
+
+AlbumDescription = () => (
+  <View style={{flexDirection: 'row', flexWrap: 'wrap', padding: 10}}>
+    <Text
+      style={[
+        styles.title,
+        {fontSize: 18, color: 'grey', fontWeight: '400', textAlign: 'justify'},
+      ]}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+      pulvinar lorem eu ligula gravida tincidunt. Donec a nisi eros. Nunc
+      venenatis mauris sed risus euismod iaculis. Donec sapien nibh, rutrum non
+      imperdiet hendrerit, congue vel risus. Phasellus enim turpis, venenatis
+      sit amet faucibus sed, malesuada eu justo. Ut id ultricies mauris.
+    </Text>
+  </View>
+);
+
+function DetailsScreen({route, navigation}) {
+  const {item} = route.params;
+  const {
+    artistName,
+    imageLowRes,
+    trackName,
+    collectionName,
+    imageHighRes,
+    trackViewUrl,
+  } = item;
+  const {otherParam} = route.params;
+  return (
+    <View style={styles.container}>
+      <BackGroundImage imgUri={imageHighRes} />
+      <View style={{alignItems: 'center'}}>
+        <AlbumImage imgUri={imageLowRes} />
+        <Text style={styles.title}>{artistName}</Text>
+        <Text style={styles.title}>{trackName}</Text>
+        <Text style={[styles.title, {fontSize: 20}]}>{collectionName}</Text>
+        <AlbumDescription />
         <Button
-          title="Go to Details... again"
+          title="Listen on Apple Music"
           onPress={() =>
-            navigation.push('Details', {
-              itemId: Math.floor(Math.random() * 100),
-            })
+            Linking.openURL(trackViewUrl).catch((err) =>
+              console.error('An error occurred', err),
+            )
           }
         />
-        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
       </View>
-    );
-  }
+    </View>
+  );
+}
 
-  export default DetailsScreen ;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  item: {
+    backgroundColor: '#fff',
+    padding: 5,
+    marginVertical: 8,
+    marginHorizontal: 8,
+    flexDirection: 'row',
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
+  subTitles: {
+    fontSize: 20,
+  },
+  backGroundLogo: {
+    position: 'absolute',
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+    opacity: 0.5,
+  },
+  tinyLogo: {
+    width: 150,
+    height: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    borderRadius: 75,
+    borderWidth: 3,
+    borderColor: '#FFF',
+    marginTop: 125,
+  },
+});
+
+export default DetailsScreen;
